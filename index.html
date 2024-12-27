@@ -86,7 +86,8 @@
             const today = new Date();
             const isNewYear = today.getMonth() === 0 && today.getDate() === 1;
             if (!isNewYear) {
-                document.getElementById('newYearCard').innerHTML = '<h1 class="display-3">It's Not New Year Yet!</h1><p class="lead">Come back on January 1st to celebrate!</p>';
+                console.log(today, isNewYear);
+
             }
         }
 
