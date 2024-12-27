@@ -17,6 +17,8 @@
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
        
     <link rel="shortcut icon" href="https://gurraoptimus.se/icon/favicon.ico" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy New Year</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -50,7 +52,7 @@
 <body>
     <div class="fireworks" id="fireworks"></div>
 
-    <div class="new-year-card">
+    <div class="new-year-card" id="newYearCard">
         <h1 class="display-3">Happy New Year 🎉</h1>
         <p class="lead">Wishing you a joyful and prosperous year ahead!</p>
         <button class="btn btn-warning mt-3" onclick="playCelebration()">Celebrate</button>
@@ -80,7 +82,17 @@
             }
         }
 
+        function checkNewYear() {
+            const today = new Date();
+            const isNewYear = today.getMonth() === 0 && today.getDate() === 1;
+            if (!isNewYear) {
+                document.getElementById('newYearCard').innerHTML = '<h1 class="display-3">It's Not New Year Yet!</h1><p class="lead">Come back on January 1st to celebrate!</p>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', checkNewYear);
         document.body.addEventListener('click', playCelebration);
     </script>
 </body>
-</html> 
+</html>
+
