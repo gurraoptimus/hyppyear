@@ -21,82 +21,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy New Year</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(45deg, #ff6f61, #dca1ff);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-align: center;
-        }
-        .new-year-card {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        .fireworks {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="fireworks" id="fireworks"></div>
-
-    <div class="new-year-card" id="newYearCard">
-        <h1 class="display-3">Happy New Year 🎉</h1>
-        <p class="lead">Wishing you a joyful and prosperous year ahead!</p>
-        <button class="btn btn-warning mt-3" onclick="playCelebration()">Celebrate</button>
+    <body>
+    <div class="middle">
+        <h1 class="label"<new
     </div>
-
-    <script>
-        function createFirework() {
-            const firework = document.createElement('div');
-            firework.style.position = 'absolute';
-            firework.style.borderRadius = '50%';
-            firework.style.width = '10px';
-            firework.style.height = '10px';
-            firework.style.background = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
-            firework.style.left = `${Math.random() * window.innerWidth}px`;
-            firework.style.top = `${Math.random() * window.innerHeight}px`;
-            firework.style.animation = 'fade-and-move 2s ease-out';
-
-            const fireworksContainer = document.getElementById('fireworks');
-            fireworksContainer.appendChild(firework);
-
-            setTimeout(() => firework.remove(), 2000);
-        }
-
-        function playCelebration() {
-            for (let i = 0; i < 50; i++) {
-                setTimeout(createFirework, i * 100);
-            }
-        }
-
-        function checkNewYear() {
-    const today = new Date();
-    const isNewYear = today.getMonth() === 0 && today.getDate() === 1;
-    const newYearCard = document.getElementById('newYearCard');
-    
-    if (newYearCard && !isNewYear) {
-        newYearCard.innerHTML = `
-            <h1 class="display-3">It's Not New Year Yet!</h1>
-            <p class="lead">Come back on January 1st to celebrate!</p>
-        `;
-    }
-}
-        document.addEventListener('DOMContentLoaded', checkNewYear);
-        document.body.addEventListener('click', playCelebration);
-    </script>
 </body>
 </html>
 
