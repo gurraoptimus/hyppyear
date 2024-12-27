@@ -1,4 +1,4 @@
-# hyppyear Webpage
+# Hyppyear Webpage
 
 This project is a celebratory webpage to welcome the New Year with style, featuring fireworks animations and a vibrant, festive design.
 
