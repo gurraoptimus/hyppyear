@@ -181,7 +181,8 @@
         animate();
 
         // Countdown script
-        const countdownDate = new Date('Jan 1, 2025 00:00:00').getTime();
+        const currentYear = new Date().getFullYear();
+        const countdownDate = new Date(`Jan 1, ${currentYear + 1} 00:00:00`).getTime();
         const popup = document.getElementById('popup');
         const yearPopup = document.getElementById('year-popup');
         const yearSpan = document.getElementById('year');
