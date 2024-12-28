@@ -1,55 +1,174 @@
 <!DOCTYPE html>
-                        <!--Written by gurraoptimus for Gurraoptimus Development 2024-->
-  <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta property="fb:app_id"             content="" />
-        <meta property="og:url"                content="https://www.gurraoptimus.se" />
-        <meta property="og:type"               content="gurraoptimus.se" />
-        <meta property="og:title"              content="Hyppyear Webpage" />
-        <meta property="og:description"        content="Copyright &copy; gurraoptimus Development 2025. All rights reserved&mldr;" />
-        <meta property="og:image"              content="https://www.gurraoptimus.se/img/github.jpg" />
-        
-       <meta name="description" content="gurraoptimus">
-
-    <link rel="shortcut icon" href="https://gurraoptimus.se/icon/favicon.ico" type="image/x-icon" />
+            <!--Written by gurraoptimus for Gurraoptimus Development 2024-->
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="fb:app_id"             content="" />
+    <meta property="og:url"                content="https://www.gurraoptimus.se" />
+    <meta property="og:type"               content="gurraoptimus.se" />
+    <meta property="og:title"              content="Hyppyear Webpage" />
+    <meta property="og:description"        content="Copyright &copy; gurraoptimus Development 2025. All rights reserved&mldr;" />
+    <meta property="og:image"              content="https://www.gurraoptimus.se/img/github.jpg" />
+    <meta name="description" content="gurraoptimus">
+
+    <link rel="shortcut icon" href="https://gurraoptimus.se/icon/favicon.ico" type="image/x-icon" />
     <title>Happy New Year</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <body>
-           <div class="middle">
-        <h1 class="label"> New Year Countdown</h1>
-    <div class="time">
-        <span>
-        <div class="d">00</div> <!--display days-->
-       Days 
-        </span>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .middle {
+            position: absolute;
+            z-index: 1;
+            text-align: center;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .label {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .time span {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="middle">
+        <h1 class="label">New Year Countdown</h1>
+        <div class="time">
             <span>
-               <div class="h">00</div> <!--display hours-->
-            Hours
-        </span>
-        <span>
-            <div class="m">00</div> <!--display minutes-->
-            Minutes
-        </span>
+                <div class="d">00</div>
+                Days
+            </span>
             <span>
-                <div class="s">00</div> <!--display secounds-->
-            Secounds
+                <div class="h">00</div>
+                Hours
+            </span>
+            <span>
+                <div class="m">00</div>
+                Minutes
+            </span>
+            <span>
+                <div class="s">00</div>
+                Seconds
             </span>
         </div>
     </div>
-    <!-- Begin java script section -->
+    <canvas id="fireworks"></canvas>
+
     <script>
-        //define the snowflake class to set the snow properties
-        class snowflake{
-            constructor(){
-                this.x = 0; //x
+        // Fireworks animation setup
+        const canvas = document.getElementById('fireworks');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Firework {
+            constructor(x, y, colors) {
+                this.x = x;
+                this.y = y;
+                this.colors = colors;
+                this.particles = [];
+                for (let i = 0; i < 100; i++) {
+                    const angle = Math.random() * 2 * Math.PI;
+                    const speed = Math.random() * 4 + 2;
+                    this.particles.push({
+                        x: x,
+                        y: y,
+                        dx: Math.cos(angle) * speed,
+                        dy: Math.sin(angle) * speed,
+                        alpha: 1,
+                        size: Math.random() * 3 + 1
+                    });
+                }
+            }
+            update() {
+                this.particles.forEach(particle => {
+                    particle.x += particle.dx;
+                    particle.y += particle.dy;
+                    particle.alpha -= 0.02;
+                });
+                this.particles = this.particles.filter(p => p.alpha > 0);
+            }
+            draw() {
+                this.particles.forEach(particle => {
+                    ctx.globalAlpha = particle.alpha;
+                    ctx.fillStyle = this.colors;
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, 2 * Math.PI);
+                    ctx.fill();
+                });
             }
         }
+
+        const fireworks = [];
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (Math.random() < 0.05) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height / 2;
+                const colors = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                fireworks.push(new Firework(x, y, colors));
+            }
+
+            fireworks.forEach((firework, index) => {
+                firework.update();
+                firework.draw();
+                if (firework.particles.length === 0) {
+                    fireworks.splice(index, 1);
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Countdown script
+        const countdownDate = new Date('Jan 1, 2025 00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.querySelector('.d').innerText = days;
+            document.querySelector('.h').innerText = hours;
+            document.querySelector('.m').innerText = minutes;
+            document.querySelector('.s').innerText = seconds;
+
+            if (distance < 0) {
+                document.querySelector('.time').innerHTML = 'Happy New Year!';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
-
