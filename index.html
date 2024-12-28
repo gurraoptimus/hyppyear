@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-            <!--Written by gurraoptimus for Gurraoptimus Development 2024-->
+                <!--Written by gurraoptimus for Gurraoptimus Development 2024-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -50,6 +50,21 @@
             margin: 0 10px;
             font-size: 1.5em;
         }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .popup.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -75,6 +90,12 @@
         </div>
     </div>
     <canvas id="fireworks"></canvas>
+
+    <!-- Popup for Happy New Year -->
+    <div id="popup" class="popup">
+        <h2>🎉 Happy New Year! 🎉</h2>
+        <p>Wishing you a year full of joy and success!</p>
+    </div>
 
     <script>
         // Fireworks animation setup
@@ -165,10 +186,16 @@
 
             if (distance < 0) {
                 document.querySelector('.time').innerHTML = 'Happy New Year!';
+                showPopup(); // Show popup when countdown reaches zero
             }
         }
 
         setInterval(updateCountdown, 1000);
+
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            popup.classList.add('active'); // Show the popup
+        }
     </script>
 </body>
 </html>
