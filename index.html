@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--Written by gurraoptimus for Gurraoptimus Development 2024-->
+                <!--Written by gurraoptimus for Gurraoptimus Development 2024-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -102,11 +102,13 @@
     </style>
 </head>
 <body>
-    <!-- Full-screen Twitch Embed -->
     <div id="twitch-embed">
-        <iframe src="https://player.twitch.tv/?channel=chillhopradio&parent=gurraoptimus.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="100%" width="100%"></iframe>
-    </div>
+    <iframe src="https://player.twitch.tv/?channel=chillhopradio&parent=www.gurraoptimus.github.io/hyppyear/" frameborder="0" allowfullscreen="true" scrolling="no" height="1920" width="1080"></iframe>
 
+        <!-- Load the Twitch embed script -->
+        <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+    </div> <!-- Placeholder for the Twitch embed -->
+    
     <div class="middle">
         <h1 class="label">New Year Countdown</h1>
         <div class="time">
@@ -239,6 +241,15 @@
         }
 
         setInterval(updateCountdown, 1000);
+        
+         type="text/javascript">
+        // Twitch embed setup
+        new Twitch.Player("twitch-embed", {
+            channel: "chillhopradio",
+            width: "100%",
+            height: "100%",
+            parent: ["gurraoptimus.github.io"]
+        });
     </script>
 </body>
 </html>
