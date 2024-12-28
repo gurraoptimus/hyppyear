@@ -1,57 +1,41 @@
 # Hyppyear Webpage
 
-This project is a celebratory webpage to welcome the New Year with style, featuring fireworks animations and a vibrant, festive design.
+This is a simple webpage designed to display a New Year countdown timer along with a fireworks animation in the background. The page uses HTML, CSS, and JavaScript to create a festive and interactive countdown experience leading up to New Year's Eve 2025.
 
 ## Features
-
-- **Interactive Fireworks**: Click anywhere on the screen to trigger a fireworks celebration.
-- **Responsive Design**: Built with Bootstrap to ensure it looks great on all devices.
-- **Custom Styling**: Unique gradient background and festive card design.
+- A **countdown timer** showing the remaining days, hours, minutes, and seconds until New Year 2025.
+- A **fireworks animation** that continuously runs in the background.
+- A **"Happy New Year!"** message that appears once the countdown reaches zero.
+- Fully responsive design, adjusts to different screen sizes.
+- Custom favicon and meta tags for social media sharing.
 
 ## Technologies Used
+- **HTML5**: Structure of the webpage.
+- **CSS3**: Styling and positioning of elements.
+- **JavaScript**: 
+  - Countdown timer logic.
+  - Fireworks animation using `<canvas>`.
+- **Bootstrap**: Used for general page layout and styling (though not heavily utilized in the final version).
 
-- **HTML5**: For the page structure.
-- **CSS3**: Custom styles for visual enhancements.
-- **Bootstrap**: For responsive design and modern UI components.
-- **JavaScript**: Adds interactivity with fireworks animations.
+## How It Works
+1. **Countdown Timer**:
+   - The countdown is set to January 1, 2025 at 00:00:00.
+   - The time left is displayed in days, hours, minutes, and seconds.
+   - Once the countdown reaches zero, the text changes to "Happy New Year!".
 
-## How to Use
+2. **Fireworks Animation**:
+   - The fireworks are created using JavaScript's `<canvas>` API.
+   - Fireworks are launched randomly at different positions and explode with particles in various directions.
+   - Each firework has 100 particles that fade out as they move, creating a realistic animation.
 
-1. Download or clone the repository:
-    ```bash
-    git clone https://github.com/gurraoptimus/hyppyear.git
-    ```
-2. Open the `index.html` file in your favorite browser.
-3. Click on the "Celebrate" button or anywhere on the screen to see the fireworks!
+## Demo
 
-## File Structure
+You can view the demo on the following link:
 
-```
-/
-├── index.html       # Main HTML file
-├── style.css        # Custom CSS styles (embedded in HTML)
-├── script.js        # JavaScript for fireworks (embedded in HTML)
-└── README.md        # Project documentation
-```
+[Happy New Year Countdown Demo](https://www.gurraoptimus.se)
 
-## Screenshots
-
-### Desktop View
-![Desktop View](https://via.placeholder.com/800x400?text=Desktop+View)
-
-### Mobile View
-![Mobile View](https://via.placeholder.com/400x800?text=Mobile+View)
-
-## Future Enhancements
-
-- Add background music for a more festive atmosphere.
-- Include a countdown timer for New Year’s Eve.
-- Allow users to customize the fireworks colors and patterns.
-
-## License
-
-This project is licensed under the MIT License. Feel free to use, modify, and share it.
-
----
-
-Happy New Year! 🎉
+## Installation
+To run this project locally:
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/yourusername/new-year-countdown.git
