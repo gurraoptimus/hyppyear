@@ -32,10 +32,10 @@ This is a simple webpage designed to display a New Year countdown timer along wi
 
 You can view the demo on the following link:
 
-[Happy New Year Countdown Demo](https://www.gurraoptimus.se)
+[Happy New Year Countdown Demo](https://gurraoptimus.github.io/hyppyear/)
 
 ## Installation
 To run this project locally:
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/new-year-countdown.git
+   git clone https://github.com/gurraoptimus/hyppyear.git
