@@ -8,41 +8,60 @@
     <meta property="fb:app_id" content="" />
     <meta property="og:url" content="https://gurraoptimus.github.io/hyppyear" />
     <meta property="og:type" content="gurraoptimus.se" />
-    <meta property="og:title" content="Happy New Year Webpage" />
-    <meta property="og:description" content="Copyright &copy; gurraoptimus Development All rights reserved..." />
+    <meta property="og:title" content="Happy New Year" />
+    <meta property="og:description" content="Happy New Year!" />
     <meta property="og:image" content="https://gurraoptimus.github.io/hyppyear/img/year.jpg" />
     <meta name="description" content="gurraoptimus">
 
-    <link rel="shortcut icon" href="https://gurraoptimus.se/icon/favicon.ico" type="image/x-icon" />
-    <title>Happy New Year</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Anime Cyber Security New Year</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background: #000;
-            color: white;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            color: #e94560;
+            font-family: 'Orbitron', 'Roboto Mono', 'monospace', sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            animation: cyberGlow 10s infinite alternate;
         }
 
-        /* Full-screen Twitch Embed */
+        @keyframes cyberGlow {
+            0% { box-shadow: 0 0 40px #e94560, 0 0 80px #0f3460 inset; }
+            100% { box-shadow: 0 0 80px #e94560, 0 0 120px #0f3460 inset; }
+        }
+
         #twitch-embed iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;  /* Ensure Twitch background is behind everything */
+            z-index: -2;
+            filter: blur(2px) brightness(0.7);
         }
 
         .middle {
             position: absolute;
-            z-index: 1;
+            z-index: 2;
             text-align: center;
+            background: rgba(26,26,46,0.7);
+            border: 2px solid #e94560;
+            border-radius: 20px;
+            box-shadow: 0 0 20px #e94560;
+            padding: 32px 48px;
+            backdrop-filter: blur(4px);
+            animation: cyberPanel 2s infinite alternate;
+        }
+
+        @keyframes cyberPanel {
+            0% { box-shadow: 0 0 20px #e94560; }
+            100% { box-shadow: 0 0 40px #e94560; }
         }
 
         canvas {
@@ -55,14 +74,35 @@
         }
 
         .label {
-            font-size: 2em;
+            font-size: 2.5em;
             margin-bottom: 46px;
+            font-family: 'Orbitron', 'Roboto Mono', 'monospace', sans-serif;
+            text-shadow: 0 0 10px #e94560, 0 0 20px #0f3460;
+            letter-spacing: 0.1em;
+            animation: cyberText 2s infinite alternate;
+        }
+
+        @keyframes cyberText {
+            0% { color: #e94560; }
+            100% { color: #fff; }
         }
 
         .time span {
             display: inline-block;
             margin: 0 10px;
-            font-size: 1.5em;
+            font-size: 2em;
+            color: #fff;
+            background: rgba(15,52,96,0.7);
+            border-radius: 10px;
+            padding: 8px 18px;
+            box-shadow: 0 0 10px #e94560;
+            font-family: 'Roboto Mono', 'monospace';
+            animation: cyberTime 1.5s infinite alternate;
+        }
+
+        @keyframes cyberTime {
+            0% { background: rgba(15,52,96,0.7); }
+            100% { background: rgba(233,69,96,0.7); }
         }
 
         /* Popup styles */
@@ -72,11 +112,19 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            font-size: 2em;
+            background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+            color: #fff;
+            padding: 36px 60px;
+            border-radius: 20px;
+            font-size: 2.5em;
+            box-shadow: 0 0 40px #e94560;
+            border: 2px solid #fff;
+            animation: cyberPopup 1.5s infinite alternate;
+        }
+
+        @keyframes cyberPopup {
+            0% { box-shadow: 0 0 40px #e94560; }
+            100% { box-shadow: 0 0 80px #fff; }
         }
 
         .popup.show {
@@ -89,11 +137,19 @@
             top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 20px;
-            font-size: 2.5em;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #0f3460 0%, #e94560 100%);
+            color: #fff;
+            padding: 28px 44px;
+            font-size: 2.7em;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #e94560;
+            border: 2px solid #fff;
+            animation: cyberYear 2s infinite alternate;
+        }
+
+        @keyframes cyberYear {
+            0% { box-shadow: 0 0 30px #e94560; }
+            100% { box-shadow: 0 0 60px #fff; }
         }
 
         .year-popup.show {
@@ -103,14 +159,13 @@
 </head>
 <body>
     <div id="twitch-embed">
-    <iframe src="https://player.twitch.tv/?channel=chillhopradio&parent=www.gurraoptimus.github.io/hyppyear/" frameborder="0" allowfullscreen="true" scrolling="no" height="1920" width="1080"></iframe>
-
+        <iframe src="https://player.twitch.tv/?channel=chillhopradio&parent=gurraoptimus.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="1920" width="1080"></iframe>
         <!-- Load the Twitch embed script -->
         <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-    </div> <!-- Placeholder for the Twitch embed -->
+    </div>
     
     <div class="middle">
-        <h1 class="label">New Year Countdown</h1>
+        <h1 class="label">Anime Cyber Security<br>New Year Countdown</h1>
         <div class="time">
             <span>
                 <div class="d">00</div> Days
@@ -125,7 +180,17 @@
                 <div class="s">00</div> Seconds
             </span>
         </div>
+        <div style="margin-top:32px;">
+            <img src="img/cyber-anime.png" alt="Anime Cyber Security" style="width:180px; border-radius:50%; box-shadow:0 0 20px #e94560; border:3px solid #fff; animation: cyberAnime 2s infinite alternate;">
+        </div>
     </div>
+
+    <style>
+    @keyframes cyberAnime {
+        0% { box-shadow: 0 0 20px #e94560; }
+        100% { box-shadow: 0 0 40px #fff; }
+    }
+    </style>
 
     <div class="popup" id="popup">Happy New Year!</div>
     <div class="year-popup" id="year-popup">Welcome to the year <span id="year"></span>!</div>
@@ -154,7 +219,8 @@
                         dx: Math.cos(angle) * speed,
                         dy: Math.sin(angle) * speed,
                         alpha: 1,
-                        size: Math.random() * 3 + 1
+                        size: Math.random() * 3 + 1,
+                        color: `hsl(${Math.random() * 360}, 100%, 60%)`
                     });
                 }
             }
@@ -171,7 +237,7 @@
             draw() {
                 this.particles.forEach(particle => {
                     ctx.globalAlpha = particle.alpha;
-                    ctx.fillStyle = this.colors;
+                    ctx.fillStyle = particle.color;
                     ctx.beginPath();
                     ctx.arc(particle.x, particle.y, particle.size, 0, 2 * Math.PI);
                     ctx.fill();
@@ -192,7 +258,33 @@
                 }
             });
 
+            // Cyber security anime effect: matrix rain
+            drawMatrixRain();
+
             requestAnimationFrame(animate);
+        }
+
+        // Matrix rain effect
+        const matrixChars = 'アニメサイバーセキュリティ2025HappyNewYear!@#$%^&*';
+        const fontSize = 18;
+        const columns = Math.floor(window.innerWidth / fontSize);
+        const drops = Array(columns).fill(1);
+
+        function drawMatrixRain() {
+            ctx.save();
+            ctx.font = fontSize + "px monospace";
+            ctx.fillStyle = "rgba(15,52,96,0.15)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#e94560";
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+            ctx.restore();
         }
 
         animate();
@@ -220,36 +312,33 @@
 
             // Trigger the popup and fireworks when countdown reaches zero
             if (distance < 0) {
-                document.querySelector('.time').innerHTML = 'Happy New Year!';
+                document.querySelector('.time').innerHTML = '<span style="font-size:2.5em; color:#e94560;">🎉 Happy New Year! 🎉</span>';
                 popup.classList.add('show');  // Show the initial popup
 
                 // Trigger fireworks
-                fireworks.push(new Firework(canvas.width / 2, canvas.height / 2, `hsl(${Math.random() * 360}, 100%, 50%)`));
-                
+                for (let i = 0; i < 5; i++) {
+                    fireworks.push(new Firework(
+                        Math.random() * canvas.width,
+                        Math.random() * canvas.height / 2,
+                        `hsl(${Math.random() * 360}, 100%, 50%)`
+                    ));
+                }
+
                 // Show the year popup after 1 second
                 setTimeout(() => {
                     const currentYear = new Date().getFullYear() + 0; // Get the next year (2025)
                     yearSpan.innerText = currentYear;  // Set the year in the popup
                     yearPopup.classList.add('show');   // Show the year popup
                 }, 1000);
-                
+
                 // Hide the initial popup after 5 seconds
                 setTimeout(() => {
                     popup.classList.remove('show');
-                }, 5000); 
+                }, 5000);
             }
         }
 
         setInterval(updateCountdown, 1000);
-        
-         type="text/javascript">
-        // Twitch embed setup
-        new Twitch.Player("twitch-embed", {
-            channel: "chillhopradio",
-            width: "100%",
-            height: "100%",
-            parent: ["gurraoptimus.github.io"]
-        });
     </script>
 </body>
 </html>
