@@ -115,7 +115,7 @@
 </head>
 <body>
     <div class="middle">
-        <h1 class="label">Happy New Year Countdown</h1>
+        <h1 class="label">Countdown</h1>
         <div class="time">
             <span><div class="d">00</div> Days</span>
             <span><div class="h">00</div> Hours</span>
@@ -200,7 +200,8 @@
             if (distance < 0) {
                 document.querySelector('.middle').style.display = 'none';
                 document.getElementById('newyear-popup').style.display = 'block';
-                document.getElementById('newyear-popup').innerHTML = `<span>🎉 Happy New Year <br>${currentYear + 1} 🎉</span>`;
+                document.getElementById('newyear-popup').innerHTML = `<span>🎉 Happy New Year🎉</span>`;
+                document.getElementById('newyear-popup').innerHTML += `<span>Welcome to ${currentYear + 1}!</span>`;
                 // Fireworks explode
                 for (let i = 0; i < 8; i++) {
                     fireworks.push(new Firework(
