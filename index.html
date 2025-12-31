@@ -1,343 +1,215 @@
 <!DOCTYPE html>
-                <!--Written by gurraoptimus for Gurraoptimus Development 2024-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta property="fb:app_id" content="" />
-    <meta property="og:url" content="https://gurraoptimus.github.io/hyppyear" />
-    <meta property="og:type" content="gurraoptimus.se" />
-    <meta property="og:title" content="Happy New Year" />
-    <meta property="og:description" content="Happy New Year!" />
-    <meta property="og:image" content="https://gurraoptimus.github.io/hyppyear/img/year.jpg" />
-    <meta name="description" content="gurraoptimus">
-
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <title>Anime Cyber Security New Year</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Happy New Year Countdown</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            background: radial-gradient(circle at 50% 30%, #fff 0%, #e94560 30%, #0f3460 70%, #000 100%);
             color: #e94560;
             font-family: 'Orbitron', 'Roboto Mono', 'monospace', sans-serif;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: background 1s;
+        }
+        .middle {
+            position: relative;
+            text-align: center;
+            background: rgba(0,0,0,0.85);
+            border: 3px solid #e94560;
+            border-radius: 32px;
+            box-shadow: 0 0 40px #e94560, 0 0 80px #fff;
+            padding: 48px 64px;
+            max-width: 420px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .label {
+            font-size: 2.7em;
+            margin-bottom: 32px;
+            font-family: 'Orbitron', 'Roboto Mono', 'monospace', sans-serif;
+            text-shadow: 0 0 16px #e94560, 0 0 32px #fff;
+            letter-spacing: 0.12em;
+            animation: labelPulse 1.5s infinite alternate;
+        }
+        @keyframes labelPulse {
+            0% { color: #e94560; text-shadow: 0 0 16px #e94560, 0 0 32px #fff; }
+            100% { color: #fff; text-shadow: 0 0 32px #fff, 0 0 16px #e94560; }
+        }
+        .time {
+            margin-bottom: 16px;
+            display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            animation: cyberGlow 10s infinite alternate;
+            gap: 10px;
         }
-
-        @keyframes cyberGlow {
-            0% { box-shadow: 0 0 40px #e94560, 0 0 80px #0f3460 inset; }
-            100% { box-shadow: 0 0 80px #e94560, 0 0 120px #0f3460 inset; }
-        }
-
-        #twitch-embed iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            filter: blur(2px) brightness(0.7);
-        }
-
-        .middle {
-            position: absolute;
-            z-index: 2;
-            text-align: center;
-            background: rgba(26,26,46,0.7);
-            border: 2px solid #e94560;
-            border-radius: 20px;
-            box-shadow: 0 0 20px #e94560;
-            padding: 32px 48px;
-            backdrop-filter: blur(4px);
-            animation: cyberPanel 2s infinite alternate;
-        }
-
-        @keyframes cyberPanel {
-            0% { box-shadow: 0 0 20px #e94560; }
-            100% { box-shadow: 0 0 40px #e94560; }
-        }
-
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .label {
-            font-size: 2.5em;
-            margin-bottom: 46px;
-            font-family: 'Orbitron', 'Roboto Mono', 'monospace', sans-serif;
-            text-shadow: 0 0 10px #e94560, 0 0 20px #0f3460;
-            letter-spacing: 0.1em;
-            animation: cyberText 2s infinite alternate;
-        }
-
-        @keyframes cyberText {
-            0% { color: #e94560; }
-            100% { color: #fff; }
-        }
-
         .time span {
-            display: inline-block;
-            margin: 0 10px;
-            font-size: 2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            font-size: 1.2em;
             color: #fff;
-            background: rgba(15,52,96,0.7);
+            background: linear-gradient(120deg, #e94560 0%, #fff 100%);
             border-radius: 10px;
-            padding: 8px 18px;
+            padding: 8px 12px;
             box-shadow: 0 0 10px #e94560;
             font-family: 'Roboto Mono', 'monospace';
-            animation: cyberTime 1.5s infinite alternate;
+            animation: none;
         }
-
-        @keyframes cyberTime {
-            0% { background: rgba(15,52,96,0.7); }
-            100% { background: rgba(233,69,96,0.7); }
+        .time span div {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 2px;
         }
-
-        /* Popup styles */
         .popup {
             display: none;
-            position: absolute;
+            position: fixed;
+            left: 50%;
             top: 50%;
-            left: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+            background: rgba(0,0,0,0.95);
             color: #fff;
-            padding: 36px 60px;
-            border-radius: 20px;
-            font-size: 2.5em;
-            box-shadow: 0 0 40px #e94560;
-            border: 2px solid #fff;
-            animation: cyberPopup 1.5s infinite alternate;
+            border: 3px solid #e94560;
+            border-radius: 32px;
+            box-shadow: 0 0 60px #e94560, 0 0 120px #fff;
+            padding: 60px 80px;
+            font-size: 3em;
+            z-index: 100;
+            text-align: center;
+            animation: popupFade 1s, popupGlow 2s infinite alternate;
+            min-width: 320px;
+            min-height: 120px;
+            line-height: 1.2;
         }
-
-        @keyframes cyberPopup {
-            0% { box-shadow: 0 0 40px #e94560; }
-            100% { box-shadow: 0 0 80px #fff; }
-        }
-
-        .popup.show {
+        .popup span {
             display: block;
+            font-size: 1.2em;
+            font-weight: bold;
+            letter-spacing: 0.04em;
         }
-
-        .year-popup {
-            display: none;
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #0f3460 0%, #e94560 100%);
-            color: #fff;
-            padding: 28px 44px;
-            font-size: 2.7em;
-            border-radius: 20px;
-            box-shadow: 0 0 30px #e94560;
-            border: 2px solid #fff;
-            animation: cyberYear 2s infinite alternate;
+        @keyframes popupGlow {
+            0% { box-shadow: 0 0 60px #e94560, 0 0 120px #fff; }
+            100% { box-shadow: 0 0 120px #e94560, 0 0 180px #fff; }
         }
-
-        @keyframes cyberYear {
-            0% { box-shadow: 0 0 30px #e94560; }
-            100% { box-shadow: 0 0 60px #fff; }
+        @keyframes popupFade {
+            0% { opacity: 0; transform: scale(0.8) translate(-50%, -50%); }
+            100% { opacity: 1; transform: scale(1) translate(-50%, -50%); }
         }
-
-        .year-popup.show {
-            display: block;
+        canvas#fireworks {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 99;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-    <div id="twitch-embed">
-        <iframe src="https://player.twitch.tv/?channel=chillhopradio&parent=gurraoptimus.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="1920" width="1080"></iframe>
-        <!-- Load the Twitch embed script -->
-        <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-    </div>
-    
     <div class="middle">
-        <h1 class="label">Anime Cyber Security<br>New Year Countdown</h1>
+        <h1 class="label">Happy New Year Countdown</h1>
         <div class="time">
-            <span>
-                <div class="d">00</div> Days
-            </span>
-            <span>
-                <div class="h">00</div> Hours
-            </span>
-            <span>
-                <div class="m">00</div> Minutes
-            </span>
-            <span>
-                <div class="s">00</div> Seconds
-            </span>
-        </div>
-        <div style="margin-top:32px;">
-            <img src="img/cyber-anime.png" alt="Anime Cyber Security" style="width:180px; border-radius:50%; box-shadow:0 0 20px #e94560; border:3px solid #fff; animation: cyberAnime 2s infinite alternate;">
+            <span><div class="d">00</div> Days</span>
+            <span><div class="h">00</div> Hours</span>
+            <span><div class="m">00</div> Minutes</span>
+            <span><div class="s">00</div> Seconds</span>
         </div>
     </div>
-
-    <style>
-    @keyframes cyberAnime {
-        0% { box-shadow: 0 0 20px #e94560; }
-        100% { box-shadow: 0 0 40px #fff; }
-    }
-    </style>
-
-    <div class="popup" id="popup">Happy New Year!</div>
-    <div class="year-popup" id="year-popup">Welcome to the year <span id="year"></span>!</div>
-
     <canvas id="fireworks"></canvas>
-
+    <div class="popup" id="newyear-popup"></div>
     <script>
-        // Fireworks animation setup
+        // Fireworks animation
         const canvas = document.getElementById('fireworks');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
+        function randomColor() {
+            return `hsl(${Math.random()*360},100%,60%)`;
+        }
         class Firework {
-            constructor(x, y, colors) {
+            constructor(x, y) {
                 this.x = x;
                 this.y = y;
-                this.colors = colors;
                 this.particles = [];
-                for (let i = 0; i < 100; i++) {
+                for (let i = 0; i < 80; i++) {
                     const angle = Math.random() * 2 * Math.PI;
-                    const speed = Math.random() * 4 + 2;
+                    const speed = Math.random() * 5 + 2;
                     this.particles.push({
                         x: x,
                         y: y,
                         dx: Math.cos(angle) * speed,
                         dy: Math.sin(angle) * speed,
                         alpha: 1,
-                        size: Math.random() * 3 + 1,
-                        color: `hsl(${Math.random() * 360}, 100%, 60%)`
+                        color: randomColor(),
+                        size: Math.random() * 3 + 1
                     });
                 }
             }
-
             update() {
-                this.particles.forEach(particle => {
-                    particle.x += particle.dx;
-                    particle.y += particle.dy;
-                    particle.alpha -= 0.02;
+                this.particles.forEach(p => {
+                    p.x += p.dx;
+                    p.y += p.dy;
+                    p.dy += 0.05;
+                    p.alpha -= 0.018;
                 });
                 this.particles = this.particles.filter(p => p.alpha > 0);
             }
-
             draw() {
-                this.particles.forEach(particle => {
-                    ctx.globalAlpha = particle.alpha;
-                    ctx.fillStyle = particle.color;
+                this.particles.forEach(p => {
+                    ctx.globalAlpha = p.alpha;
+                    ctx.fillStyle = p.color;
                     ctx.beginPath();
-                    ctx.arc(particle.x, particle.y, particle.size, 0, 2 * Math.PI);
+                    ctx.arc(p.x, p.y, p.size, 0, 2 * Math.PI);
                     ctx.fill();
                 });
             }
         }
-
-        const fireworks = [];
-
-        function animate() {
+        let fireworks = [];
+        function animateFireworks() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            fireworks.forEach((firework, index) => {
-                firework.update();
-                firework.draw();
-                if (firework.particles.length === 0) {
-                    fireworks.splice(index, 1);
-                }
+            fireworks.forEach((fw, i) => {
+                fw.update();
+                fw.draw();
+                if (fw.particles.length === 0) fireworks.splice(i, 1);
             });
-
-            // Cyber security anime effect: matrix rain
-            drawMatrixRain();
-
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animateFireworks);
         }
-
-        // Matrix rain effect
-        const matrixChars = 'アニメサイバーセキュリティ2025HappyNewYear!@#$%^&*';
-        const fontSize = 18;
-        const columns = Math.floor(window.innerWidth / fontSize);
-        const drops = Array(columns).fill(1);
-
-        function drawMatrixRain() {
-            ctx.save();
-            ctx.font = fontSize + "px monospace";
-            ctx.fillStyle = "rgba(15,52,96,0.15)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#e94560";
-            for (let i = 0; i < drops.length; i++) {
-                const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-            ctx.restore();
-        }
-
-        animate();
-
+        animateFireworks();
         // Countdown script
         const currentYear = new Date().getFullYear();
         const countdownDate = new Date(`Jan 1, ${currentYear + 1} 00:00:00`).getTime();
-        const popup = document.getElementById('popup');
-        const yearPopup = document.getElementById('year-popup');
-        const yearSpan = document.getElementById('year');
-
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = countdownDate - now;
-
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
             document.querySelector('.d').innerText = days;
             document.querySelector('.h').innerText = hours;
             document.querySelector('.m').innerText = minutes;
             document.querySelector('.s').innerText = seconds;
-
-            // Trigger the popup and fireworks when countdown reaches zero
             if (distance < 0) {
-                document.querySelector('.time').innerHTML = '<span style="font-size:2.5em; color:#e94560;">🎉 Happy New Year! 🎉</span>';
-                popup.classList.add('show');  // Show the initial popup
-
-                // Trigger fireworks
-                for (let i = 0; i < 5; i++) {
+                document.querySelector('.middle').style.display = 'none';
+                document.getElementById('newyear-popup').style.display = 'block';
+                document.getElementById('newyear-popup').innerHTML = `<span>🎉 Happy New Year <br>${currentYear + 1} 🎉</span>`;
+                // Fireworks explode
+                for (let i = 0; i < 8; i++) {
                     fireworks.push(new Firework(
                         Math.random() * canvas.width,
-                        Math.random() * canvas.height / 2,
-                        `hsl(${Math.random() * 360}, 100%, 50%)`
+                        Math.random() * canvas.height / 2 + canvas.height / 4
                     ));
                 }
-
-                // Show the year popup after 1 second
-                setTimeout(() => {
-                    const currentYear = new Date().getFullYear() + 0; // Get the next year (2025)
-                    yearSpan.innerText = currentYear;  // Set the year in the popup
-                    yearPopup.classList.add('show');   // Show the year popup
-                }, 1000);
-
-                // Hide the initial popup after 5 seconds
-                setTimeout(() => {
-                    popup.classList.remove('show');
-                }, 5000);
             }
         }
-
         setInterval(updateCountdown, 1000);
     </script>
 </body>
